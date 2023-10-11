@@ -1,8 +1,8 @@
 package com.education.ztu.game;
 
-public abstract class Participant {
-    private String name;
-    private int age;
+public abstract class Participant implements Cloneable, Comparable<Participant>{
+    public String name;
+    public int age;
 
     public Participant(String name, int age) {
         this.name = name;
@@ -23,5 +23,10 @@ public abstract class Participant {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public int compareTo(Participant other) {
+        return this.name.compareTo(other.name);
     }
 }

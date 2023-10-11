@@ -8,27 +8,34 @@ public class Game {
         Student student2 = new Student("Viktoria", 21);
         Employee employee1 = new Employee("Andriy", 28);
         Employee employee2 = new Employee("Oksana", 25);
-        Team scollarTeam = new Team("Dragon");
-        scollarTeam.addNewParticipant(schoolar1);
-        scollarTeam.addNewParticipant(schoolar2);
-        scollarTeam.addNewParticipant(student1);
-        scollarTeam.addNewParticipant(employee1);
 
-        Team studentTeam = new Team("Vpered");
+        // Створюємо команди з використанням generics
+        Team<Schoolar> schoolarTeam = new Team<>("Dragon");
+        schoolarTeam.addNewParticipant(schoolar1);
+        schoolarTeam.addNewParticipant(schoolar2);
+
+        Team<Student> studentTeam = new Team<>("Vpered");
         studentTeam.addNewParticipant(student1);
         studentTeam.addNewParticipant(student2);
-        Team employeeTeam = new Team("Robotyagi");
+
+        Team<Employee> employeeTeam = new Team<>("Robotyagi");
         employeeTeam.addNewParticipant(employee1);
         employeeTeam.addNewParticipant(employee2);
-        Team anotherTeam = new Team("Fantaziya");
-        anotherTeam.addNewParticipant("hello");
 
-        Team scollarTeam2 = new Team("Rozumnyky");
+        // Спроба додати учасника іншого типу до команди (помилка)
+        //schoolarTeam.addNewParticipant(student1);
+
+        Team<Schoolar> scollarTeam2 = new Team<>("Rozumnyky");
         Schoolar schoolar3 = new Schoolar("Sergey", 12);
         Schoolar schoolar4 = new Schoolar("Olga", 14);
         scollarTeam2.addNewParticipant(schoolar3);
         scollarTeam2.addNewParticipant(schoolar4);
-        scollarTeam.playWith(scollarTeam2);
-        scollarTeam.playWith(employeeTeam);
+
+        // Гра між командами одного типу (працює)
+        schoolarTeam.playWith(scollarTeam2);
+
+        // Гра між командами різних типів (помилка)
+        // scollarTeam.playWith(employeeTeam);
     }
 }
+
